@@ -1,0 +1,27 @@
+.app{
+  width: 360px;
+  height: 379px;
+  background: #0B2434;
+  display: grid;
+  place-items: center;
+
+  .app-container{
+    width: 320px;
+    height: 320px;
+    background: #f5f5f5;
+    border-radius: 7px;
+    text-align: center;
+    padding: 20px 25px;
+
+    h2{
+      margin-bottom: 5px;
+    }
+
+    p{
+      font-size: 0.9rem;
+      color: #4A4E74;
+    }
+  }
+}
+
+
