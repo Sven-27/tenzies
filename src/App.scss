@@ -21,6 +21,30 @@
       font-size: 0.9rem;
       color: #4A4E74;
     }
+
+    .dies-container{
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .app-button{
+      border-radius: 4px;
+      outline: none;
+      border: none;
+      background: #5035ff;
+      width: 92px;
+      height:35px;
+      color: #fff;
+      margin-top: 30px;
+      font-family: Karla, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      font-size: 16px;
+    }
   }
 }
 
