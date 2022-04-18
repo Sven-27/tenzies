@@ -10,17 +10,17 @@ function App() {
            Click each die to freeze it at its 
            current value between rolls.      
         </p>
-      <section className="dies-container">
-        <Die />
-        <Die />
-        <Die />
-        <Die />
-        <Die />
-        <Die />
-        <Die />
-        <Die />
-        <Die />
-        <Die />
+      <section className="dice-container">
+        <Die value="1" />
+        <Die value="2" />
+        <Die value="3" />
+        <Die value="4" />
+        <Die value="5" />
+        <Die value="6" />
+        <Die value="1" />
+        <Die value="1" />
+        <Die value="1" />
+        <Die value="1" />        
       </section>
       <button className="app-button">Roll</button>
       </div>

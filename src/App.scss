@@ -22,12 +22,11 @@
       color: #4A4E74;
     }
 
-    .dies-container{
+    .dice-container{
       margin-top: 20px;
       width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template: auto auto / repeat(5, 1fr);
       gap: 15px;
     }
 

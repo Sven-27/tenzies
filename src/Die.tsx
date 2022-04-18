@@ -1,9 +1,9 @@
 import "Die.scss"
 
-const Die = () => {
+const Die = ({ value }: any) => {
   return (
     <div className="die">
-      1
+      <h2 className="die--value">{ value }</h2>
     </div>
   )
 }
