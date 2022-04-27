@@ -2,6 +2,16 @@ import './App.scss';
 import Die from "./Die"
 
 function App() {
+  const allNewDice = () => {
+    const newDice = []
+    for(let i = 0; i < 10; i++){
+      newDice.push(Math.floor(Math.random() * 6) + 1)
+    }
+    return newDice
+  } 
+
+  console.log(allNewDice())
+
   return (
     <main className="app">
       <div className="app-container">
