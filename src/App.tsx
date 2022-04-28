@@ -1,4 +1,5 @@
-import './App.scss';
+import { useState } from "react"
+import "./App.scss"
 import Die from "./Die"
 
 function App() {
@@ -10,7 +11,15 @@ function App() {
     return newDice
   } 
 
-  console.log(allNewDice())
+  const [ diceValue, setDiceValue ] = useState(allNewDice())
+
+  const randomDiceNumbers = diceValue.map(( number, index ) => (
+    <Die key={ index } value={ number } />
+  ))
+
+  const rollDice = () => {
+    setDiceValue(allNewDice())
+  }
 
   return (
     <main className="app">
@@ -21,18 +30,14 @@ function App() {
            current value between rolls.      
         </p>
       <section className="dice-container">
-        <Die value="1" />
-        <Die value="2" />
-        <Die value="3" />
-        <Die value="4" />
-        <Die value="5" />
-        <Die value="6" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />
-        <Die value="1" />        
+        { randomDiceNumbers }      
       </section>
-      <button className="app-button">Roll</button>
+      <button 
+        className="app-button"
+        onClick={rollDice}
+      >
+        Roll
+      </button>
       </div>
     </main>
   );
