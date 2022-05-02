@@ -1,25 +1,43 @@
 import { useState } from "react"
 import "./App.scss"
 import Die from "./Die"
+import { nanoid } from "nanoid" 
 
 function App() {
-  const allNewDice = () => {
+  const [ diceValue, setDiceValue ] = useState(allNewDice())
+
+  function allNewDice() {
     const newDice = []
     for(let i = 0; i < 10; i++){
-      newDice.push(Math.floor(Math.random() * 6) + 1)
+      newDice.push({
+        id: nanoid(),
+        value: Math.floor(Math.random() * 6) + 1, 
+        isHeld: false
+      })
     }
     return newDice
   } 
 
-  const [ diceValue, setDiceValue ] = useState(allNewDice())
-
-  const randomDiceNumbers = diceValue.map(( number, index ) => (
-    <Die key={ index } value={ number } />
-  ))
+  const holdDice = ( id: string ) => {
+    setDiceValue(oldDice => oldDice.map( die => {
+      return die.id === id ? 
+        { ...die, isHeld: !die.isHeld } : die
+    }))
+  }
 
   const rollDice = () => {
     setDiceValue(allNewDice())
   }
+
+  const randomDiceNumbers = diceValue.map( number => (
+    <Die 
+      key={ number.id } 
+      value={ number.value } 
+      isHeld={ number.isHeld }  
+      holdDice={() => holdDice(number.id) }
+    />
+  ))
+
 
   return (
     <main className="app">
@@ -34,7 +52,7 @@ function App() {
       </section>
       <button 
         className="app-button"
-        onClick={rollDice}
+        onClick={ rollDice }
       >
         Roll
       </button>
