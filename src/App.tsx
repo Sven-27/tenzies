@@ -1,19 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./App.scss"
 import Die from "./Die"
 import { nanoid } from "nanoid" 
 
 function App() {
   const [ diceValue, setDiceValue ] = useState(allNewDice())
+  const [ tenzies, setTenzies ] = useState(false)
+
+  function generateNewDie() {
+    return {
+        id: nanoid(),
+        value: Math.floor(Math.random() * 6) + 1, 
+        isHeld: false
+      }
+  }
 
   function allNewDice() {
     const newDice = []
     for(let i = 0; i < 10; i++){
-      newDice.push({
-        id: nanoid(),
-        value: Math.floor(Math.random() * 6) + 1, 
-        isHeld: false
-      })
+      newDice.push(generateNewDie())
     }
     return newDice
   } 
@@ -26,7 +31,11 @@ function App() {
   }
 
   const rollDice = () => {
-    setDiceValue(allNewDice())
+    setDiceValue(oldDice => oldDice.map(die => {
+      return die.isHeld ?
+             die :
+             generateNewDie()
+    }))
   }
 
   const randomDiceNumbers = diceValue.map( number => (
@@ -37,6 +46,17 @@ function App() {
       holdDice={() => holdDice(number.id) }
     />
   ))
+
+  useEffect(() => {
+    const allHeld = diceValue.every(die => die.isHeld)
+    const firstValue = diceValue[0].value
+    const allSameValue = diceValue.every(die => die.value === firstValue)
+    if(allHeld && allSameValue){
+      setTenzies(true) 
+      console.log("You won!")
+    }
+    console.log("changed")
+  }, [diceValue])
 
 
   return (
